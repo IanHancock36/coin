@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {choice} from "./helpers"
 
 class CoinContainer extends Component {
   static defaultProps = {
@@ -13,12 +14,19 @@ class CoinContainer extends Component {
       currCoin: null,
       nFlips: 0,
       nHead: 0,
-      nTails: 0,
+      nTails: 0
     };
     this.handleCLick = this.handleCLick.bind(this)
   }
   flipCoin() {
-      
+    const newCoin = choice (this.props.coins);
+    this.setState( st => {
+      return{
+        currCoin : newCoin,
+        nFlips : st.nFlips +1 
+        
+      }
+    })  
   }
   handleCLick(e) {
     this.flipCoin();
